@@ -137,8 +137,7 @@ public class Game {
                                     System.out.println("\n"+"Incorrect! The " + enemy.getName() + " hits you for " + enemy.getDamage() + " damage!" + "\n");
                                     enemy.attack(player);
                                 }
-                                if(player.getHealth()<0){player.setHealth(0);}
-                                System.out.println("Your health: " + player.getHealth() + " | " + enemy.getName() + " health: " + enemy.getHealth() + "\n");
+                                player.showHealth(enemy);
                             }
                             if(enemy.getHealth() <=0){
                                 System.out.println("You defeated the Math Teacher and got the Calculator!" + "\n" + "***Type exit to leave***" + "\n");
@@ -157,8 +156,7 @@ public class Game {
                                     System.out.println("\n"+"Incorrect! The " + enemy.getName() + " hits you for " + enemy.getDamage() + " damage!" + "\n");
                                     enemy.attack(player);
                                  }
-                                 if(player.getHealth()<0){player.setHealth(0);}
-                                 System.out.println("Your health: " + player.getHealth() + " | " + enemy.getName() + " health: " + enemy.getHealth() + "\n");
+                                 player.showHealth(enemy);
                             }
                             if(enemy.getHealth() <=0){
                                 System.out.println("You defeated the Evil Burger and got the Pizza!" + "\n" + "***Type exit to leave***" + "\n");
@@ -180,8 +178,7 @@ public class Game {
                                     System.out.println("\n"+"Incorrect! The " + enemy.getName() + " hits you for " + enemy.getDamage() + " damage!" + "\n");
                                     enemy.attack(player);
                                  }
-                                 if(player.getHealth()<0){player.setHealth(0);}
-                                 System.out.println("Your health: " + player.getHealth() + " | " + enemy.getName() + " health: " + enemy.getHealth() + "\n");
+                                 player.showHealth(enemy);
                             }
                             if(enemy.getHealth() <=0){
                                 System.out.println("You defeated the Evil Broom and got the Pencils!" + "\n" + "\n" + "***Type exit to leave***" + "\n");
@@ -201,8 +198,7 @@ public class Game {
                                     System.out.println("\n"+"Incorrect! The " + enemy.getName() + " hits you for " + enemy.getDamage() + " damage!" + "\n");
                                     enemy.attack(player);
                                  }
-                                 if(player.getHealth()<0){player.setHealth(0);}
-                                 System.out.println("Your health: " + player.getHealth() + " | " + enemy.getName() + " health: " + enemy.getHealth() + "\n");
+                                 player.showHealth(enemy);
                             }
                             if(enemy.getHealth() <=0){
                                 System.out.println("You defeated the Principal and got the Test Answers!");

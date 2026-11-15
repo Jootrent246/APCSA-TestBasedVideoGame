@@ -45,5 +45,12 @@ public class Player{
     public Room getRoom(){
         return currentRoom;
     }
+
+    public void showHealth(Enemy enemy){
+    if(health < 0){
+        health = 0;
+    }
+    System.out.println("Your health: " + health + " | " + enemy.getName() + " health: " + enemy.getHealth() + "\n");
+    }
     
 }
