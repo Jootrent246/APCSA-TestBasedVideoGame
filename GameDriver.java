@@ -1,6 +1,8 @@
 public class GameDriver {
     public static void main(String[]args){
-        System.out.println("hi");
+        Game g = new Game();
+        g.setUP();
+        g.gameLoop();
     }
     
 }
