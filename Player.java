@@ -1,3 +1,8 @@
+//Trent Hardacre
+//APCSA Text Based Video Game
+//Mrs. Ramsey
+//This is the Player class that contains methods used for the player.
+
 public class Player{
     private int health;
     private Room currentRoom;
@@ -12,7 +17,6 @@ public class Player{
     public void addKeys(int keys){
         numKeys += keys;
     }
-
 
     public void takeDamage(int damage){
         health -= damage;
@@ -32,6 +36,10 @@ public class Player{
 
     public int getHealth(){
         return health;
+    }
+
+    public void setHealth(int health){
+        this.health = health;
     }
 
     public Room getRoom(){

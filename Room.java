@@ -1,9 +1,10 @@
+//Trent Hardacre
+//APCSA Text Based Video Game
+//Mrs. Ramsey
+//This is the Room class that contains the room's description, name, and methods to get the room's neighbors and enemy.
+
 public class Room {
     private String description;
-    private int keys;
-    private boolean isSearched;
-    private boolean hasTreasure;
-    private boolean isLocked;
     private boolean hasEnemy;
     private Room north;
     private Room south;
@@ -13,10 +14,9 @@ public class Room {
     private Enemy enemy;
     private boolean isPowerOn;
 
-    public Room(String name, String description, boolean hasTreasure, boolean hasEnemy){
+    public Room(String name, String description, boolean hasEnemy){
         this.roomName = name;
         this.description = description;
-        this.hasTreasure = hasTreasure;
         this.hasEnemy = hasEnemy;
     }
 
@@ -43,11 +43,6 @@ public class Room {
         this.enemy = e;
     }
 
-    public void search(){
-        isSearched = true;
-    }
-    
-    
     public String getDescription(){
         return description;
     }
@@ -82,8 +77,5 @@ public class Room {
             return false;
         }
     }
-
-    
-
 }
 

@@ -1,3 +1,8 @@
+//Trent Hardacre
+//APCSA Text Based Video Game
+//Mrs. Ramsey
+//This is the Enemy class that contains the enemy's health, name, damage, and methods to attack the player and take damage from the player.
+
 public class Enemy {
     private int health;
     private String name;
@@ -35,7 +40,6 @@ public class Enemy {
 
     public void attack (Player p){
         p.takeDamage(damage);
-        System.out.println("The " + name + " hits you for " + damage + " damage!");
     }
 
     public String getName(){
