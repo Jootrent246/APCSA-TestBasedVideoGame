@@ -15,7 +15,6 @@ public class Game {
     private Enemy broom;
     private Enemy mathTeach;
     private Enemy burger;      
-    private Enemy attendanceLady;
     private Enemy principle;
     
     private String[] mathQuestions = {"3 x 4", "6 x 7", "8 x 9", "5 x 6", "7 x 8","9 x 9", "4 x 12", "11 x 11", "6 x 8", "7 x 7","12 x 12", "9 x 6", "8 x 4", "11 x 7", "12 x 9"};
@@ -62,9 +61,10 @@ public class Game {
             if(player.getRoom() != lastRoom){
             System.out.println("\n" + player.getRoom().getDescription());
             System.out.println("\n"+"Type search to investigate room"+ "\n");
-            System.out.println("["+player.getRoom().getName()+"]");
             lastRoom = player.getRoom();
             }
+             
+            System.out.println("["+player.getRoom().getName()+"]");
             
             System.out.print("> ");
             command = input.nextLine().toLowerCase();
@@ -122,7 +122,7 @@ public class Game {
                                  System.out.println("Your health: " + player.getHealth() + " | " + enemy.getName() + " health: " + enemy.getHealth() + "\n");
                             }
                             if(enemy.getHealth() <=0){
-                                System.out.println("You defeated the Math Teacher and got the Calculator!");
+                                System.out.println("\n"+"You defeated the Math Teacher and got the Calculator!" + "\n" + "Type exit to leave");
                                 player.addKeys(1);
                             }
                         }else if(enemy.getName().equals("Burger")){
@@ -141,7 +141,7 @@ public class Game {
                                   System.out.println("Your health: " + player.getHealth() + " | " + enemy.getName() + " health: " + enemy.getHealth() + "\n");
                             }
                             if(enemy.getHealth() <=0){
-                                System.out.println("You defeated the Broom and got the Pencils!");
+                                System.out.println("\n"+"You defeated the Broom and got the Pencils!" + "\n" + "Type exit to leave");
                                 player.addKeys(1);
                             }
                         }else if(enemy.getName().equals("Broom")){
@@ -162,8 +162,29 @@ public class Game {
                                   System.out.println("Your health: " + player.getHealth() + " | " + enemy.getName() + " health: " + enemy.getHealth() + "\n");
                             }
                             if(enemy.getHealth() <=0){
-                                System.out.println("You defeated the Burger and got the Pizza!");
+                                System.out.println("\n"+"You defeated the Burger and got the Pizza!" + "\n" + "Type exit to leave");
                                 player.addKeys(1);
+                            }
+                        }else if(enemy.getName().equals("Principal")){
+                            System.out.println("Defeat him for the Test Answers!" + "\n");
+                            while(enemy.isAlive() && player.getHealth() > 0){
+                                 int number = (int) (Math.random() * 10) + 1;
+                                 System.out.print( "Pick a number between 1 and 10 to see if you can attack"+"\n");
+                                 String guess = input.nextLine().trim();
+                                 if(guess.equals(String.valueOf(number))){
+                                    System.out.println("Correct! You hit the " + enemy.getName() + " for 10 damage" + "\n");
+                                    player.attack(enemy);
+                                 }else{
+                                    System.out.println("Incorrect! The " + enemy.getName() + " hits you for " + enemy.getDamage() + " damage!" + "\n");
+                                    enemy.attack(player);
+                                 }
+                                  System.out.println("Your health: " + player.getHealth() + " | " + enemy.getName() + " health: " + enemy.getHealth() + "\n");
+                            }
+                            if(enemy.getHealth() <=0){
+                                System.out.println("\n"+"You defeated the Principal and got the Test Answers!" + "\n" + "Type exit to leave");
+                                player.addKeys(1);
+                                System.out.println("\n"+"Congratulations! Your sure to ACE your Test!"+"\n");
+                                gameOver = true;
                             }
                         }
                 }else if(player.getRoom().hasEnemy()){
@@ -171,6 +192,8 @@ public class Game {
                 }else if(player.getRoom().equals(fOffice)){
                     System.out.println("\n" +"You found the power switch, now you can access other rooms!" + "\n");
                     fOffice.setPower(true);
+                }else if (player.getRoom().equals(fOffice) && fOffice.isPowerOn() == true){
+                    System.out.println("\n" +"The Power is already on" + "\n");
                 }
             }
         }
