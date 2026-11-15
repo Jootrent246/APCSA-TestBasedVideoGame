@@ -139,6 +139,10 @@ public class Game {
                                  }
                                   System.out.println("Your health: " + player.getHealth() + " | " + enemy.getName() + " health: " + enemy.getHealth() + "\n");
                             }
+                            if(enemy.getHealth() <=0){
+                                System.out.println("You defeated the Broom and got the Pencils!");
+                                player.addKeys(1);
+                            }
                         }else if(enemy.getName().equals("Broom")){
                             System.out.println("Defeat it for Pencils!" + "\n");
                             while(enemy.isAlive() && player.getHealth() > 0){
@@ -155,6 +159,10 @@ public class Game {
                                     enemy.attack(player);
                                  }
                                   System.out.println("Your health: " + player.getHealth() + " | " + enemy.getName() + " health: " + enemy.getHealth() + "\n");
+                            }
+                            if(enemy.getHealth() <=0){
+                                System.out.println("You defeated the Burger and got the Pizza!");
+                                player.addKeys(1);
                             }
                         }
                 }else if(player.getRoom().hasEnemy()){
