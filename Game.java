@@ -29,7 +29,7 @@ public class Game {
         System.out.println("===========================================================================================================================");
         System.out.println("Welcome to the game!" + "\n" + "You are a student at a high school. Your goal is to find the test answers by defeating enemies and finding the three keys." + "\n" + "Good luck!");
         System.out.println("===========================================================================================================================");
-        System.out.println("Commands: " + "\n" + "north, south, east, west - move in that direction" + "\n" + "search - search the room" + "\n" + "invetory - check your items, and health" + "\n" + "quit - go home" + "\n" + "exit - exit room" + "\n" + "help - get commands");
+        System.out.println("Commands: " + "\n" + "north, south, east, west - move in that direction" + "\n" + "search - search the room" + "\n" + "invetory - check your items, power status,and health" + "\n" + "quit - go home" + "\n" + "exit - exit room" + "\n" + "help - get commands");
         
         supplyCloset = new Room("Supply Closet", "You are in the supply closet. Find the Pencils", true, true);
         mathRoom = new Room("Math Room", "You are in the math room. Find the Calculator.", true, true);
@@ -40,7 +40,7 @@ public class Game {
 
         broom = new Enemy(20, "Broom", 2);
         mathTeach = new Enemy(30, "Math Teacher", 10);
-        burger = new Enemy(20, "Burger", 2);
+        burger = new Enemy(20, "Burger", 3);
         principle = new Enemy(50, "Principal", 20);
 
         supplyCloset.setEnemy(broom);
@@ -73,15 +73,16 @@ public class Game {
                 System.out.println("Thanks for playing!");
                 gameOver = true;
             }else if (command.equals("help")){
-                System.out.println("Commands: " + "\n" + "north, south, east, west - move in that direction" + "\n" + "search - search the room" + "\n" + "invetory - check your items, location, and health" + "\n" + "quit - go home" + "\n" + "exit - exit room" + "\n" + "help - get commands"+ "\n");
-               
+                System.out.println("Commands: " + "\n" + "north, south, east, west - move in that direction" + "\n" + "search - search the room" + "\n" + "invetory - check your items, power status, and health" + "\n" + "quit - go home" + "\n" + "exit - exit room" + "\n" + "help - get commands"+ "\n");
             }else if (command.equals("inventory")){
-                System.out.println("Health: " + player.getHealth() + "\n" + "Keys: " + player.getKeys() + "\n");
+                System.out.println("Health: " + player.getHealth() + "\n" + "Items: " + player.getKeys() + "\n" + "Power Status: " + (fOffice.isPowerOn() ? "On" : "Off") + "\n");
             }else if(command.equals("west")){
                 if(player.getRoom() != fOffice){
                     System.out.println("\n"+"***Type exit to return to front office***"+ "\n");
                 }else if(player.getKeys() < 3){
-                    System.out.println("\n"+"You need all three keys to enter the attendance office."+"\n");
+                    if(fOffice.isPowerOn() == false){
+                        System.out.println("\n"+"The power is out! You can't access other rooms!"+"\n");
+                    }else if(fOffice.isPowerOn() == true){ System.out.println("\n"+"You need all three keys to enter the attendance office."+"\n");}
                 }else{
                     Room nextRoom = player.getRoom().getNeighbor(command);
                     player.changeRooms(nextRoom);
