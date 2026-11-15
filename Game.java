@@ -35,12 +35,12 @@ public class Game {
         System.out.println("===========================================================================================================================");
         System.out.println("Welcome to the game!" + "\n" + "You are a student at a high school. Your goal is to find the test answers by defeating enemies and finding the three items." + "\n" + "Good luck!");
         System.out.println("===========================================================================================================================");
-        System.out.println("Commands: " + "\n" + "north, south, east, west - move in that direction" + "\n" + "search - search the room" + "\n" + "invetory - check your items, the power status, and health" + "\n" + "quit - go home" + "\n" + "exit - exit room" + "\n" + "help - get commands");
+        System.out.println("Commands: " + "\n" + "north, south, east, west - move in that direction" + "\n" + "search - search the room" + "\n" + "inventory - check your items, the power status, and health" + "\n" + "quit - go home" + "\n" + "exit - exit room" + "\n" + "help - get commands");
         
         supplyCloset = new Room("Supply Closet", "You are in the supply closet. Find the Pencils", true);
         mathRoom = new Room("Math Room", "You are in the math room. Find the Calculator.",true);
         cafeteria = new Room("Cafeteria", "You are in the cafeteria. Find the Pizza.", true);
-        fOffice = new Room("Front Office", "You are in the front office. Naviagte to other Rooms.", false);
+        fOffice = new Room("Front Office", "You are in the front office. Navigate to other Rooms.", false);
         pOffice = new Room("Principal's Office", "You are in the principal's office. Look around for the test answers!", true);
 
 
@@ -72,7 +72,7 @@ public class Game {
                     System.out.println("\n" + player.getRoom().getDescription());
                     System.out.println("\n"+"***Type search to investigate room***"+ "\n");
                     if(player.getKeys() == 3 && player.getRoom().equals(fOffice)){
-                        System.out.println("***You have all three keys! You can now enter the Principal's Office to get the Test Answers!***" + "\n");
+                        System.out.println("***You have all three items! You can now enter the Principal's Office to get the Test Answers!***" + "\n");
                     }
                 }
                     lastRoom = player.getRoom();
@@ -87,7 +87,7 @@ public class Game {
                 System.out.println("Thanks for playing!");
                 gameOver = true;
             }else if (command.equals("help")){
-                System.out.println("\n"+"Commands: " + "\n" + "north, south, east, west - move in that direction" + "\n" + "search - search the room" + "\n" + "invetory - check your items, the power status, and health" + "\n" + "quit - go home" + "\n" + "exit - exit room" + "\n" + "help - get commands"+ "\n");
+                System.out.println("\n"+"Commands: " + "\n" + "north, south, east, west - move in that direction" + "\n" + "search - search the room" + "\n" + "inventory - check your items, the power status, and health" + "\n" + "quit - go home" + "\n" + "exit - exit room" + "\n" + "help - get commands"+ "\n");
             }else if (command.equals("inventory")){
                 System.out.println("\n"+"Health: " + player.getHealth() + "\n" + "Items: " + player.getKeys() + "\n" + "Power Status: " + (fOffice.isPowerOn() ? "On" : "Off") + "\n");
             }else if(command.equals("west")){
@@ -96,7 +96,7 @@ public class Game {
                 }else if(player.getKeys() < 3){
                     if(fOffice.isPowerOn() == false){
                         System.out.println("\n"+"The power is out! You can't access other rooms!"+"\n" + "***Type search to look for the switch***" + "\n");
-                    }else if(fOffice.isPowerOn() == true){ System.out.println("\n"+"You need all three items to enter the principles office."+"\n");}
+                    }else if(fOffice.isPowerOn() == true){ System.out.println("\n"+"You need all three items to enter the principle's office."+"\n");}
                 }else{
                     Room nextRoom = player.getRoom().getNeighbor(command);
                     player.changeRooms(nextRoom);
@@ -150,7 +150,7 @@ public class Game {
                                  System.out.print( "Pick a number between 1 and 2 to see if you can attack"+"\n");
                                  String guess = input.nextLine().trim();
                                  if(guess.equals(String.valueOf(number))){
-                                    System.out.println("\n"+"Correct! You hit the Evil " + enemy.getName() + "for 10 damage" + "\n");
+                                    System.out.println("\n"+"Correct! You hit the Evil " + enemy.getName() + " for 10 damage" + "\n");
                                     player.attack(enemy);
                                  }else{
                                     System.out.println("\n"+"Incorrect! The " + enemy.getName() + " hits you for " + enemy.getDamage() + " damage!" + "\n");
@@ -202,7 +202,7 @@ public class Game {
                             }
                             if(enemy.getHealth() <=0){
                                 System.out.println("You defeated the Principal and got the Test Answers!");
-                                System.out.println("Congratulations You Win! Your sure to ACE your Test!"+"\n");
+                                System.out.println("Congratulations You Win! You're sure to ACE your Test!"+"\n");
                                 gameOver = true;
                             }
                         }
