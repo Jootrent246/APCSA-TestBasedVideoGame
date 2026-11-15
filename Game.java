@@ -96,7 +96,7 @@ public class Game {
                 }else if(player.getKeys() < 3){
                     if(fOffice.isPowerOn() == false){
                         System.out.println("\n"+"The power is out! You can't access other rooms!"+"\n" + "***Type search to look for the switch***" + "\n");
-                    }else if(fOffice.isPowerOn() == true){ System.out.println("\n"+"You need all three items to enter the principle's office."+"\n");}
+                    }else if(fOffice.isPowerOn() == true){ System.out.println("\n"+"You need all three items to enter the principal's office."+"\n");}
                 }else{
                     Room nextRoom = player.getRoom().getNeighbor(command);
                     player.changeRooms(nextRoom);
