@@ -24,8 +24,8 @@ public class Game {
     private String[] mathQuestions = {"3 x 4", "6 x 7", "8 x 9", "5 x 6", "7 x 8","9 x 9", "4 x 12", "11 x 11", "6 x 8", "7 x 7","12 x 12", "9 x 6", "8 x 4", "11 x 7", "12 x 9"};
     private String[] mathAnswers = {"12", "42", "72", "30", "56","81", "48", "121", "48", "49","144", "54", "32", "77", "108"};
 
-    private String[] triviaQuestions = {"What planet is known as the Red Planet?", "How many continents are there?", "What is the largest ocean on Earth?", "How many sides does a hexagon have?", "What is the freezing point of water in Fahrenheit?", "What is the capital of France?", "How many legs does a spider have?", "What is the largest planet in our solar system?", "What color do you get when you mix blue and yellow?", "How many days are in a leap year?"};
-    private String[] triviaAnswers = {"mars", "7", "pacific", "6", "32", "paris", "8", "jupiter", "green", "366"};
+   private String[] triviaQuestions = {"What is the capital of Australia?", "What is the chemical symbol for gold?", "What planet is closest to the Sun?", "What is the largest bone in the human body?", "What is the largest organ of the human body?", "What is the fastest land animal?", "What is the currency of Japan?", "What is a shape with eight sides called?", "What language is mainly spoken in Brazil?", "What is the capital of Canada?", "What is the hardest natural substance on Earth?", "What planet has the Great Red Spot?", "What is the study of living things called?", "What is the capital of Egypt?", "What type of animal is a Komodo dragon?"};
+   private String[] triviaAnswers = {"canberra", "au", "mercury", "femur", "skin", "cheetah", "yen", "octagon", "portuguese", "ottawa", "diamond", "jupiter", "biology", "cairo", "lizard"};
 
     public Game() {
         this.input = new Scanner(System.in);
@@ -78,7 +78,7 @@ public class Game {
             System.out.println("["+player.getRoom().getName()+"]");
             
             System.out.print("> ");
-            command = input.nextLine().toLowerCase();
+            command = input.nextLine().trim().toLowerCase();
             
             if (command.equals("quit")){
                 System.out.println("Thanks for playing!");
@@ -92,7 +92,7 @@ public class Game {
                     System.out.println("\n"+"***Type exit to return to front office***"+ "\n");
                 }else if(player.getKeys() < 3){
                     if(fOffice.isPowerOn() == false){
-                        System.out.println("\n"+"The power is out! You can't access other rooms!"+"\n" + "***Type search to look for switch***" + "\n");
+                        System.out.println("\n"+"The power is out! You can't access other rooms!"+"\n" + "***Type search to look for the switch***" + "\n");
                     }else if(fOffice.isPowerOn() == true){ System.out.println("\n"+"You need all three items to enter the principles office."+"\n");}
                 }else{
                     Room nextRoom = player.getRoom().getNeighbor(command);
@@ -100,7 +100,7 @@ public class Game {
                 }
             }else if (command.equals("north") || command.equals("south") || command.equals("east")){
                 if(fOffice.isPowerOn() == false){
-                    System.out.println("\n"+"The power is out! You can't access other rooms!"+"\n" + "***Type search to look for switch***" + "\n");
+                    System.out.println("\n"+"The power is out! You can't access other rooms!"+"\n" + "***Type search to look for the switch***" + "\n");
                 }else if (fOffice.isPowerOn() == true){
                     Room nextRoom = player.getRoom().getNeighbor(command);
                     if(player.getRoom() == fOffice){
@@ -128,10 +128,10 @@ public class Game {
                                 System.out.println("What is " + mathQuestions[i] + "?");
                                 String answer = input.nextLine().trim();
                                 if(answer.equals(mathAnswers[i])){
-                                    System.out.println("Correct! You hit the " + enemy.getName() + " for 10 damage!" + "\n");
+                                    System.out.println("\n"+"Correct! You hit the " + enemy.getName() + " for 10 damage!" + "\n");
                                     player.attack(enemy);
                                 }else{
-                                    System.out.println("Incorrect! The " + enemy.getName() + " hits you for " + enemy.getDamage() + " damage!" + "\n");
+                                    System.out.println("\n"+"Incorrect! The " + enemy.getName() + " hits you for " + enemy.getDamage() + " damage!" + "\n");
                                     enemy.attack(player);
                                 }
                                 if(player.getHealth()<0){player.setHealth(0);}
@@ -148,10 +148,10 @@ public class Game {
                                  System.out.print( "Pick a number between 1 and 2 to see if you can attack"+"\n");
                                  String guess = input.nextLine().trim();
                                  if(guess.equals(String.valueOf(number))){
-                                    System.out.println("Correct! You hit the Evil " + enemy.getName() + "for 10 damage" + "\n");
+                                    System.out.println("\n"+"Correct! You hit the Evil " + enemy.getName() + "for 10 damage" + "\n");
                                     player.attack(enemy);
                                  }else{
-                                    System.out.println("Incorrect! The " + enemy.getName() + " hits you for " + enemy.getDamage() + " damage!" + "\n");
+                                    System.out.println("\n"+"Incorrect! The " + enemy.getName() + " hits you for " + enemy.getDamage() + " damage!" + "\n");
                                     enemy.attack(player);
                                  }
                                  if(player.getHealth()<0){player.setHealth(0);}
@@ -165,15 +165,16 @@ public class Game {
                             System.out.println("Defeat it for Pencils!" + "\n");
                             while(enemy.isAlive() && player.getHealth() > 0){
                                  String correctAnswer;
+                                 String correctShort;
                                  int number = (int) (Math.random() * 2) + 1;
-                                 if (number == 1){correctAnswer = "heads";}else{correctAnswer = "tails";}
+                                 if (number == 1){correctAnswer = "heads"; correctShort = "head";}else{correctAnswer = "tails"; correctShort = "tail";}
                                  System.out.print( "It flips a coin pick heads or tails to see if you can attack"+"\n");
-                                 String uGuess = input.nextLine().trim();
-                                 if(uGuess.equals(String.valueOf(correctAnswer))){
-                                    System.out.println("Correct! You hit the " + "Evil " +enemy.getName() + " for 10 damage" + "\n");
+                                 String uGuess = input.nextLine().trim().toLowerCase();
+                                 if(uGuess.equals(String.valueOf(correctAnswer)) || uGuess.equals(String.valueOf(correctShort))){
+                                    System.out.println("\n"+"Correct! You hit the " + "Evil " +enemy.getName() + " for 10 damage" + "\n");
                                     player.attack(enemy);
                                  }else{
-                                    System.out.println("Incorrect! The " + enemy.getName() + " hits you for " + enemy.getDamage() + " damage!" + "\n");
+                                    System.out.println("\n"+"Incorrect! The " + enemy.getName() + " hits you for " + enemy.getDamage() + " damage!" + "\n");
                                     enemy.attack(player);
                                  }
                                  if(player.getHealth()<0){player.setHealth(0);}
@@ -189,12 +190,12 @@ public class Game {
                                  int i = (int) (Math.random() * triviaQuestions.length);
                                  System.out.println( "Answer his questions to defeat him!"+"\n");
                                  System.out.println(triviaQuestions[i]);
-                                 String Oguess = input.nextLine().trim();
+                                 String Oguess = input.nextLine().trim().toLowerCase();
                                  if(Oguess.equals(triviaAnswers[i])){
-                                    System.out.println("Correct! You hit the " + enemy.getName() + " for 10 damage" + "\n");
+                                    System.out.println("\n"+"Correct! You hit the " + enemy.getName() + " for 10 damage" + "\n");
                                     player.attack(enemy);
                                  }else{
-                                    System.out.println("Incorrect! The " + enemy.getName() + " hits you for " + enemy.getDamage() + " damage!" + "\n");
+                                    System.out.println("\n"+"Incorrect! The " + enemy.getName() + " hits you for " + enemy.getDamage() + " damage!" + "\n");
                                     enemy.attack(player);
                                  }
                                  if(player.getHealth()<0){player.setHealth(0);}
@@ -218,7 +219,7 @@ public class Game {
                 System.out.println("\n"+"Invalid command. Type 'help' for a list of commands." + "\n");
             }
             if(player.getKeys() == 3 && player.getRoom().equals(fOffice)){
-                System.out.println("\n"+"You have all three keys! You can now enter the Principal's Office to get the Test Answers!" + "\n");
+                System.out.println("***You have all three keys! You can now enter the Principal's Office to get the Test Answers!***" + "\n");
             }
             if(player.getHealth() == 0){
                 System.out.println("You've been CAUGHT! Game Over!" + "\n");
