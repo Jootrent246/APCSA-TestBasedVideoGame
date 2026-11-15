@@ -71,6 +71,9 @@ public class Game {
                 }else{
                     System.out.println("\n" + player.getRoom().getDescription());
                     System.out.println("\n"+"***Type search to investigate room***"+ "\n");
+                    if(player.getKeys() == 3 && player.getRoom().equals(fOffice)){
+                        System.out.println("***You have all three keys! You can now enter the Principal's Office to get the Test Answers!***" + "\n");
+                    }
                 }
                     lastRoom = player.getRoom();
             }
@@ -202,7 +205,7 @@ public class Game {
                                  System.out.println("Your health: " + player.getHealth() + " | " + enemy.getName() + " health: " + enemy.getHealth() + "\n");
                             }
                             if(enemy.getHealth() <=0){
-                                System.out.println("\n"+"You defeated the Principal and got the Test Answers!");
+                                System.out.println("You defeated the Principal and got the Test Answers!");
                                 System.out.println("Congratulations You Win! Your sure to ACE your Test!"+"\n");
                                 gameOver = true;
                             }
@@ -215,11 +218,10 @@ public class Game {
                 }else if (player.getRoom().equals(fOffice) && fOffice.isPowerOn() == true){
                     System.out.println("\n" +"Power is already on" + "\n");
                 }
+            }else if (command.equals("attack")){
+                System.out.println("\n"+"There's nothing to attack here. Type search to look around."+"\n");
             }else {
                 System.out.println("\n"+"Invalid command. Type 'help' for a list of commands." + "\n");
-            }
-            if(player.getKeys() == 3 && player.getRoom().equals(fOffice)){
-                System.out.println("***You have all three keys! You can now enter the Principal's Office to get the Test Answers!***" + "\n");
             }
             if(player.getHealth() == 0){
                 System.out.println("You've been CAUGHT! Game Over!" + "\n");
