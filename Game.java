@@ -20,6 +20,9 @@ public class Game {
     private String[] mathQuestions = {"3 x 4", "6 x 7", "8 x 9", "5 x 6", "7 x 8","9 x 9", "4 x 12", "11 x 11", "6 x 8", "7 x 7","12 x 12", "9 x 6", "8 x 4", "11 x 7", "12 x 9"};
     private String[] mathAnswers = {"12", "42", "72", "30", "56","81", "48", "121", "48", "49","144", "54", "32", "77", "108"};
 
+    private String[] triviaQuestions = {"What planet is known as the Red Planet?", "How many continents are there?", "What is the largest ocean on Earth?", "How many sides does a hexagon have?", "What is the freezing point of water in Fahrenheit?", "What is the capital of France?", "How many legs does a spider have?", "What is the largest planet in our solar system?", "What color do you get when you mix blue and yellow?", "How many days are in a leap year?"};
+    private String[] triviaAnswers = {"mars", "7", "pacific", "6", "32", "paris", "8", "jupiter", "green", "366"};
+
     public Game() {
         this.input = new Scanner(System.in);
     }
@@ -168,10 +171,10 @@ public class Game {
                         }else if(enemy.getName().equals("Principal")){
                             System.out.println("Defeat him for the Test Answers!" + "\n");
                             while(enemy.isAlive() && player.getHealth() > 0){
-                                 int number = (int) (Math.random() * 10) + 1;
-                                 System.out.print( "Pick a number between 1 and 10 to see if you can attack"+"\n");
-                                 String guess = input.nextLine().trim();
-                                 if(guess.equals(String.valueOf(number))){
+                                 int i = (int) (Math.random() * triviaQuestions.length);
+                                 System.out.print( "Answer his questions to defeat him!"+"\n");
+                                 String Oguess = input.nextLine().trim();
+                                 if(Oguess.equals(triviaAnswers[i])){
                                     System.out.println("Correct! You hit the " + enemy.getName() + " for 10 damage" + "\n");
                                     player.attack(enemy);
                                  }else{
@@ -181,9 +184,9 @@ public class Game {
                                   System.out.println("Your health: " + player.getHealth() + " | " + enemy.getName() + " health: " + enemy.getHealth() + "\n");
                             }
                             if(enemy.getHealth() <=0){
-                                System.out.println("\n"+"You defeated the Principal and got the Test Answers!" + "\n" + "Type exit to leave");
+                                System.out.println("\n"+"You defeated the Principal and got the Test Answers!" + "\n");
                                 player.addKeys(1);
-                                System.out.println("\n"+"Congratulations! Your sure to ACE your Test!"+"\n");
+                                System.out.println("\n"+"Congratulations You Win! Your sure to ACE your Test!"+"\n");
                                 gameOver = true;
                             }
                         }
@@ -195,6 +198,10 @@ public class Game {
                 }else if (player.getRoom().equals(fOffice) && fOffice.isPowerOn() == true){
                     System.out.println("\n" +"The Power is already on" + "\n");
                 }
+            }
+            if (player.getHealth() <= 0){
+                System.out.println("\n"+"You've been CAUGHT! Game Over!" + "\n");
+                gameOver = true;
             }
         }
     }          
