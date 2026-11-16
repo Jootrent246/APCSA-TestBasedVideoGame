@@ -20,6 +20,8 @@ public class Game {
     private Enemy mathTeach;
     private Enemy burger;      
     private Enemy principle;
+
+    private boolean pOfficeUnlocked = false;
     
     private String[] mathQuestions = {"3 x 4", "6 x 7", "8 x 9", "5 x 6", "7 x 8","9 x 9", "4 x 12", "11 x 11", "6 x 8", "7 x 7","12 x 12", "9 x 6", "8 x 4", "11 x 7", "12 x 9"};
     private String[] mathAnswers = {"12", "42", "72", "30", "56","81", "48", "121", "48", "49","144", "54", "32", "77", "108"};
@@ -93,11 +95,17 @@ public class Game {
             }else if(command.equals("west")){
                 if(player.getRoom() != fOffice){
                     System.out.println("\n"+"***Type exit to return to front office***"+ "\n");
+                }else if(pOfficeUnlocked == true){
+                    Room nextRoom = player.getRoom().getNeighbor(command);
+                    player.changeRooms(nextRoom);
                 }else if(player.getKeys() < 3){
                     if(fOffice.isPowerOn() == false){
                         System.out.println("\n"+"The power is out! You can't access other rooms!"+"\n" + "***Type search to look for the switch***" + "\n");
                     }else if(fOffice.isPowerOn() == true){ System.out.println("\n"+"You need all three items to enter the principal's office."+"\n");}
                 }else{
+                    player.addKeys(-3);
+                    pOfficeUnlocked = true;
+                    System.out.println("\n"+"You used all three items to unlock the Principal's Office!"+"\n");
                     Room nextRoom = player.getRoom().getNeighbor(command);
                     player.changeRooms(nextRoom);
                 }
